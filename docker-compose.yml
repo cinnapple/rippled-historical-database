@@ -1,14 +1,30 @@
-webapp:
-  build: .
-  volumes:
-    - .:/usr/src/app
-    - /usr/src/app/node_modules
-  ports:
-    - "7111:7111"
-  links:
-    - hbase
-    - redis
-hbase:
-  image: bwilsonripple/hbase
-redis:
-  image: redis
+version: '3.5'
+
+services:
+
+  rhdb-webapp:
+    container_name: rhdb-webapp
+    build:
+      context: .
+    networks:
+      - rhdb
+    ports:
+      - "7111:7111"
+    volumes:
+      - ./node_modules:/usr/app/node_modules
+      - .:/usr/app
+    depends_on:
+      - rhdb-hbase
+
+  rhdb-hbase:
+    container_name: rhdb-hbase
+    image: bwilsonripple/hbase
+    networks:
+      - rhdb
+    ports:
+      - "8080:8080" # rest (Endpoint)
+      - "8085:8085" # rest (UI)
+      - "9095:9095" # thrift (UI)
+
+networks:
+  rhdb:

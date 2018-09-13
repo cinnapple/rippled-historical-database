@@ -12,7 +12,11 @@
     "test": "node_modules/.bin/mocha --ui tdd -R spec test/setup.api.js test/test.*.js --logLevel 0",
     "test:limit": "node_modules/.bin/mocha --ui tdd -R spec test/test.rateLimit.js",
     "lint": "if ! [ -f eslintrc ]; then curl -o eslintrc 'https://raw.githubusercontent.com/ripple/javascript-style-guide/es6/eslintrc' >> eslintrc; fi; eslint -c eslintrc --rule {no-var:0} $(git --no-pager diff --name-only -M100% --diff-filter=AM --relative origin/HEAD | grep \".js$\")",
-    "start": "nodemon api/index.js"
+    "start": "nodemon api/index.js",
+    "start_etl": "nodemon lib/validations/etl.js",
+    "import_ct": "node import/createTables.js",
+    "import_live": "node import/live.js",
+    "val_ct": "node lib/validations/createTables.js"
   },
   "author": "",
   "license": "ISC",

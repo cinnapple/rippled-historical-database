@@ -7,13 +7,13 @@
   "hbase" : {
     "prefix" : "test_",
     "servers" : [
-      {"host" : "", "port": 9090}
+      {"host" : "rhdb-hbase", "port": 9090}
     ]
   },
   "hbase-rest" : {
     "prefix" : "test_",
-    "host"   : "",
-    "port"   : 20550
+    "host"   : "rhdb-hbase",
+    "port"   : 8080
   },
   "validators-config" : "validators.config.json.example"
 }
